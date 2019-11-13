@@ -27,4 +27,8 @@ export class MovieService {
     moviesList.push(movie);
     this.webStorageService.store(AppConstants.localStoreKey, moviesList);
   }
+
+  getAllMovies(): Movie[] {
+    return this.webStorageService.retrieve(AppConstants.localStoreKey) || [];
+  }
 }

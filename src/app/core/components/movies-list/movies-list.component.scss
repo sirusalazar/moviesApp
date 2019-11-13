@@ -1,0 +1,11 @@
+.list-container {
+  height: 100%;
+  position: relative;
+  .btn-open {
+    position: absolute;
+    top: 0;
+  }
+  .no-items {
+    flex-direction: column;
+  }
+}

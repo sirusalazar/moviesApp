@@ -1,15 +1,6 @@
 <div class="main-container">
-  <mat-sidenav-container>
-    <mat-sidenav #sidenav role="navigation">
-      <!--<mas-left-navigation
-        (sidenavClose)="sidenav.close()"
-      ></mas-left-navigation>-->
-    </mat-sidenav>
-    <mat-sidenav-content>
-      <mas-toolbar (sidenavToggle)="sidenav.toggle()"></mas-toolbar>
-      <main>
-        <router-outlet></router-outlet>
-      </main>
-    </mat-sidenav-content>
-  </mat-sidenav-container>
+  <mas-toolbar (sidenavToggle)="sidenav.toggle()"></mas-toolbar>
+  <main>
+    <router-outlet></router-outlet>
+  </main>
 </div>

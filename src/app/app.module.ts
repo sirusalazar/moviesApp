@@ -1,5 +1,6 @@
 import { BrowserModule } from "@angular/platform-browser";
 import { NgModule } from "@angular/core";
+import { CommonModule } from "@angular/common";
 import { FlexLayoutModule } from "@angular/flex-layout";
 import { ReactiveFormsModule } from "@angular/forms";
 import { HttpClientModule, HttpClient } from "@angular/common/http";
@@ -14,6 +15,7 @@ import { CoreModule } from "@moviesApp-core/core.module";
   declarations: [AppComponent, routedComponents],
   imports: [
     BrowserModule,
+    CommonModule,
     AppRoutingModule,
     AppSharedModule,
     BrowserAnimationsModule,

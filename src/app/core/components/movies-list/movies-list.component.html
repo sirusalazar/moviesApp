@@ -1,0 +1,25 @@
+<div class="list-container">
+  <mat-sidenav #sidenav disableClose class="list-items">
+    <mat-list>
+      <mas-movie-item
+        *ngFor="let movie of movies; let i = index"
+        [movie]="movie"
+        routerLink="movie/{{ i }}"
+      ></mas-movie-item>
+      <mat-list-item *ngIf="!movies.length" fxLayout="column" class="no-items">
+        <p>there are no movies to show :(</p>
+        <button routerLink="/new" mat-raised-button color="primary">
+          Add Movie
+        </button>
+      </mat-list-item>
+    </mat-list>
+  </mat-sidenav>
+  <button
+    mat-icon-button
+    *ngIf="!sidenav.opened"
+    (click)="open()"
+    class="btn-open"
+  >
+    <mat-icon>format_indent_increase</mat-icon>
+  </button>
+</div>

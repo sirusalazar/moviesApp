@@ -1,0 +1,17 @@
+.movie-item {
+  margin: 4px 0;
+  &:hover {
+    cursor: pointer;
+    background-color: rgba(0, 0, 0, 0.03);
+  }
+  h3 {
+    font-weight: 500;
+  }
+  small {
+    font-style: italic;
+  }
+  mat-icon {
+    z-index: 1;
+    cursor: pointer;
+  }
+}
