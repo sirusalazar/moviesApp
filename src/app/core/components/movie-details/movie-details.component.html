@@ -1,1 +1,23 @@
-<p>movie-details works!</p>
+<div fxLayout="row" fxLayoutAlign="center center" class="movie">
+  <mat-card fxFlex="1 1 50%">
+    <mat-card-header>
+      <mat-card-title>{{ movie.title }}</mat-card-title>
+    </mat-card-header>
+    <mat-card-content
+      fxLayout="row"
+      fxLayoutAlign="space-around"
+      class="movie-content"
+    >
+      <div fxFlex="1 1 50%" class="movie-image">
+        <img mat-card-image src="{{ movie.image }}" />
+      </div>
+      <div class="movie-info">
+        <p><strong>Description: </strong>{{ movie.description }}</p>
+        <p>
+          <strong>Release Date: </strong
+          ><small>{{ movie.release | date }}</small>
+        </p>
+      </div>
+    </mat-card-content>
+  </mat-card>
+</div>

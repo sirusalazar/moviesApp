@@ -10,13 +10,13 @@ const routes: Routes = [
     path: "",
     component: HomeComponent,
     data: { title: "Home" },
-    children: [{ path: "movie/:position", component: MovieDetailsComponent }]
+    children: [{ path: "movie/:id", component: MovieDetailsComponent }]
   },
   {
     path: "home",
     component: HomeComponent,
     data: { title: "Home" },
-    children: [{ path: "movie/:position", component: MovieDetailsComponent }]
+    children: [{ path: "movie/:id", component: MovieDetailsComponent }]
   },
   {
     path: "new",

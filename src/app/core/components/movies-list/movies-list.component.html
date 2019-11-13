@@ -2,9 +2,9 @@
   <mat-sidenav #sidenav disableClose class="list-items">
     <mat-list>
       <mas-movie-item
-        *ngFor="let movie of movies; let i = index"
+        *ngFor="let movie of movies"
         [movie]="movie"
-        routerLink="movie/{{ i }}"
+        routerLink="movie/{{ movie.id }}"
       ></mas-movie-item>
       <mat-list-item *ngIf="!movies.length" fxLayout="column" class="no-items">
         <p>there are no movies to show :(</p>

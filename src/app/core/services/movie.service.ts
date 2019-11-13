@@ -14,11 +14,8 @@ export class MovieService {
     private webStorageService: WebStorageService
   ) {}
 
-  getMovie(moviePosition: number) {
-    const moviesList = this.webStorageService.retrieve(
-      AppConstants.localStoreKey
-    );
-    return moviesList[moviePosition];
+  getMovie(movieId: string) {
+    return this.getAllMovies().filter(item => item.id === movieId)[0];
   }
 
   saveMovie(movie: Movie) {
@@ -30,5 +27,21 @@ export class MovieService {
 
   getAllMovies(): Movie[] {
     return this.webStorageService.retrieve(AppConstants.localStoreKey) || [];
+  }
+
+  deleteMovie(id: string) {
+    const movies = this.getAllMovies();
+    const resultMovies = movies.filter(item => item.id !== id);
+    this.webStorageService.store(AppConstants.localStoreKey, resultMovies);
+    return resultMovies;
+  }
+
+  toggleFavorite(id) {
+    const movies = this.getAllMovies();
+    const index = movies.map(m => m.id).indexOf(id);
+    if (index > -1) {
+      movies[index].favorite = !movies[index].favorite;
+      this.webStorageService.store(AppConstants.localStoreKey, movies);
+    }
   }
 }

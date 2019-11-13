@@ -1,6 +1,7 @@
 import { Component, OnInit, ViewChild, OnDestroy } from "@angular/core";
 import { ActivatedRoute } from "@angular/router";
 import { Validators, FormBuilder } from "@angular/forms";
+import { UUID } from "angular2-uuid";
 
 import { MovieService } from "@moviesApp-core/services/movie.service";
 import { Movie } from "@moviesApp-core/models/movie.model";
@@ -49,6 +50,7 @@ export class MovieFormComponent implements OnInit, OnDestroy {
 
   getFormData(): Movie {
     const movie: Movie = {
+      id: UUID.UUID(),
       title: this.movieForm.get("title").value,
       description: this.movieForm.get("description").value,
       release: this.movieForm.get("releaseDate").value,
@@ -67,14 +69,12 @@ export class MovieFormComponent implements OnInit, OnDestroy {
 
       reader.onload = this._handleReaderLoaded.bind(this);
 
-      reader.readAsBinaryString(file);
+      reader.readAsDataURL(file);
     }
   }
 
   _handleReaderLoaded(readerEvt) {
-    const binaryString = readerEvt.target.result;
-    this.movieBase64Img = btoa(binaryString);
-    console.log(btoa(binaryString));
+    this.movieBase64Img = readerEvt.target.result;
   }
 
   onClearImage(evt) {
