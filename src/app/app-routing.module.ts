@@ -1,29 +1,32 @@
-import { NgModule } from '@angular/core';
-import { Routes, RouterModule } from '@angular/router';
+import { NgModule } from "@angular/core";
+import { Routes, RouterModule } from "@angular/router";
 
-import { HomeComponent } from './core/home/home.component';
-import { MovieFormComponent } from './core/movie-form/movie-form.component';
+import { HomeComponent } from "@moviesApp-core/home/home.component";
+import { MovieFormComponent } from "@moviesApp-core/movie-form/movie-form.component";
+import { MovieDetailsComponent } from "@moviesApp-core/components/movie-details/movie-details.component";
 
 const routes: Routes = [
   {
-    path: '',
+    path: "",
     component: HomeComponent,
-    data: { title: 'Home' }
+    data: { title: "Home" },
+    children: [{ path: "movie/:position", component: MovieDetailsComponent }]
   },
   {
-    path: 'home',
+    path: "home",
     component: HomeComponent,
-    data: { title: 'Home' }
+    data: { title: "Home" },
+    children: [{ path: "movie/:position", component: MovieDetailsComponent }]
   },
   {
-    path: 'new',
+    path: "new",
     component: MovieFormComponent,
-    data: { title: 'New' }
+    data: { title: "New" }
   },
   {
-    path: 'edit/:position',
+    path: "edit/:position",
     component: MovieFormComponent,
-    data: { title: 'Edit' }
+    data: { title: "Edit" }
   }
 ];
 
@@ -33,4 +36,8 @@ const routes: Routes = [
 })
 export class AppRoutingModule {}
 
-export const routedComponents = [HomeComponent, MovieFormComponent];
+export const routedComponents = [
+  HomeComponent,
+  MovieFormComponent,
+  MovieDetailsComponent
+];
