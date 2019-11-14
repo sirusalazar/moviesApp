@@ -1,4 +1,5 @@
-import { Component, OnInit, Output, EventEmitter } from "@angular/core";
+import { Component, OnInit } from "@angular/core";
+import { ConfigService } from "@moviesApp-shared/services/config.service";
 
 @Component({
   selector: "mas-toolbar",
@@ -6,12 +7,15 @@ import { Component, OnInit, Output, EventEmitter } from "@angular/core";
   styleUrls: ["./toolbar.component.scss"]
 })
 export class ToolbarComponent implements OnInit {
-  @Output() public sidenavToggle = new EventEmitter();
   isMobileVisible: boolean = false;
 
-  constructor() {}
+  menuItems: any;
 
-  ngOnInit() {}
+  constructor(private configService: ConfigService) {}
+
+  ngOnInit() {
+    this.menuItems = this.configService.getMenu();
+  }
 
   public onToggleMenu = () => {
     this.isMobileVisible = !this.isMobileVisible;

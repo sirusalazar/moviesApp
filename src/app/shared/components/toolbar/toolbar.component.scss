@@ -18,6 +18,10 @@ a {
         width: 100%;
         justify-content: space-between;
       }
+      .menu-list {
+        display: flex;
+        flex-direction: column;
+      }
     }
   }
 }

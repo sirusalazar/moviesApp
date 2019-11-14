@@ -11,63 +11,13 @@
     <a routerLink="/home">MoviesApp</a>
   </div>
 
-  <div fxShow="true" fxLayout.xs="column" [fxShow.xs]="isMobileVisible">
-    <a routerLink="/home" routerLinkActive="is-active" mat-button>Home</a>
-
-    <a routerLink="/new" routerLinkActive="is-active" mat-button>New</a>
-
-    <a routerLink="/top" routerLinkActive="is-active" mat-button>Top 5</a>
-
-    <a routerLink="/favorites" routerLinkActive="is-active" mat-button
-      >Favorites</a
+  <div fxShow="true" [fxShow.xs]="isMobileVisible" class="menu-list">
+    <a
+      *ngFor="let item of menuItems"
+      routerLink="{{ item.link }}"
+      routerLinkActive="is-active"
+      mat-button
+      >{{ item.text }}</a
     >
   </div>
 </mat-toolbar>
-<!--<div>
-  <mat-toolbar color="primary">
-    <span>Responsive Navigation</span>
-
-    <span class="example-spacer"></span>
-
-    <div fxShow="true" fxHide.lt-md="true">
-
-      <a href="#" mat-button>Menu Item 1</a>
-
-      <a href="#" mat-button>Menu Item 2</a>
-
-      <a href="#" mat-button>Menu Item 3</a>
-
-      <a href="#" mat-button>Menu Item 4</a>
-
-      <a href="#" mat-button>Menu Item 5</a>
-
-      <a href="#" mat-button>Menu Item 6</a>
-    </div>
-
-    <div fxShow="true" fxHide.gt-sm="true">
-      <a (click)="sidenav.toggle()">Show Side Menu</a>
-    </div>
-  </mat-toolbar>
-
-  <mat-sidenav-container fxFlexFill class="example-container">
-    <mat-sidenav #sidenav fxLayout="column">
-      <div fxLayout="column">
-        <a (click)="sidenav.toggle()" href="#" mat-button>Close</a>
-
-        <a href="#" mat-button>Menu Item 1</a>
-
-        <a href="#" mat-button>Menu Item 2</a>
-
-        <a href="#" mat-button>Menu Item 3</a>
-
-        <a href="#" mat-button>Menu Item 4</a>
-
-        <a href="#" mat-button>Menu Item 5</a>
-
-        <a href="#" mat-button>Menu Item 6</a>
-      </div>
-    </mat-sidenav>
-
-    <mat-sidenav-content fxFlexFill>Main content</mat-sidenav-content>
-  </mat-sidenav-container>
-</div>-->

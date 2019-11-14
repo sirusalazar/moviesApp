@@ -12,7 +12,7 @@
         (click)="sidenav.close()"
       ></mas-movie-item>
       <mat-list-item *ngIf="!movies.length" fxLayout="column" class="no-items">
-        <p matLine>there are no movies to show :(</p>
+        <p matLine>No movies found :(</p>
         <button matLine routerLink="/new" mat-raised-button color="primary">
           Add Movie
         </button>
