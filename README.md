@@ -10,6 +10,10 @@ Run `npm install` to install all required packages.
 
 Run `ng serve` for a dev server. Navigate to [localhost server](http://localhost:4200/).
 
+## Online Demo
+
+This is the online [demo](https://sirusalazar.github.io/moviesApp/home)
+
 ## Some features.
 
 - angular routing.
