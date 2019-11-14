@@ -9,7 +9,7 @@
         [movie]="movie"
         routerLink="movie/{{ movie.id }}"
         routerLinkActive="is-active"
-        (click)="sidenav.close()"
+        (click)="close()"
       ></mas-movie-item>
       <mat-list-item *ngIf="!movies.length" fxLayout="column" class="no-items">
         <p matLine>No movies found :(</p>

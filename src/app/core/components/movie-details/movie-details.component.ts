@@ -10,7 +10,7 @@ import { Movie } from "@moviesApp-core/models/movie.model";
   styleUrls: ["./movie-details.component.scss"]
 })
 export class MovieDetailsComponent implements OnInit {
-  movie = {};
+  movie: any;
   @Input()
   inputedMovie: any;
 

@@ -12,6 +12,7 @@ import { MediaChange, MediaObserver } from "@angular/flex-layout";
 export class MoviesListComponent implements OnInit, OnDestroy {
   watcher: Subscription;
   activeMediaQuery = "";
+  currentMedia: MediaChange;
   @ViewChild("sidenav", { static: true }) sidenav: MatSidenav;
 
   @Input() movies: Movie[];
@@ -24,6 +25,7 @@ export class MoviesListComponent implements OnInit, OnDestroy {
         ? `'${change.mqAlias}' = (${change.mediaQuery})`
         : "";
       change.mqAlias === "xs" ? this.sidenav.close() : this.sidenav.open();
+      this.currentMedia = change;
     });
   }
 
@@ -34,7 +36,9 @@ export class MoviesListComponent implements OnInit, OnDestroy {
   }
 
   close() {
-    this.sidenav.close();
+    if (this.currentMedia.mqAlias === "xs") {
+      this.sidenav.close();
+    }
   }
   open() {
     this.sidenav.open();

@@ -54,7 +54,8 @@
           mat-icon-button
           matSuffix
           matTooltip="remove file"
-          [matTooltipPosition]="above"
+          [matTooltipPosition]="'above'"
+          aria-label=""
           *ngIf="!imageInput.empty"
           (click)="onClearImage($event)"
         >
