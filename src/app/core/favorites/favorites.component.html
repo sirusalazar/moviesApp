@@ -2,3 +2,4 @@
   *ngFor="let movie of moviesList"
   [inputedMovie]="movie"
 ></mas-movie-details>
+<h5 *ngIf="!moviesList.length">No favorites Movies found :(</h5>

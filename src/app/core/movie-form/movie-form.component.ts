@@ -1,6 +1,6 @@
 import { Component, OnInit, ViewChild, OnDestroy } from "@angular/core";
 import { ActivatedRoute } from "@angular/router";
-import { Validators, FormBuilder } from "@angular/forms";
+import { Validators, FormBuilder, FormGroup } from "@angular/forms";
 import { UUID } from "angular2-uuid";
 
 import { MovieService } from "@moviesApp-core/services/movie.service";
@@ -24,20 +24,16 @@ export class MovieFormComponent
 
   formTitle: string;
 
-  movieForm = this._fb.group({
-    title: ["", Validators.required],
-    description: [""],
-    releaseDate: ["", Validators.required],
-    image: ["", Validators.required],
-    favorite: [false]
-  });
+  movieForm: FormGroup;
 
   constructor(
     private movieService: MovieService,
     private _fb: FormBuilder,
     private route: ActivatedRoute,
     private notificationService: NotificationService
-  ) {}
+  ) {
+    this.movieForm = this.generateForm();
+  }
 
   ngOnInit() {
     this.routeData = this.route.data.subscribe(value => {
@@ -54,6 +50,7 @@ export class MovieFormComponent
     this.movieForm.reset();
     this.imageInput.clear();
     this.movieBase64Img = "";
+    this.movieForm = this.generateForm();
     this.notificationService.showSuccessMessage(
       "Movie Saved",
       "movie saved successfuly"
@@ -95,5 +92,15 @@ export class MovieFormComponent
     return this.movieForm.dirty && this.movieForm.touched
       ? confirm("you have pending changes, would you like to continue?")
       : true;
+  }
+
+  generateForm(): FormGroup {
+    return this._fb.group({
+      title: ["", Validators.required],
+      description: [""],
+      releaseDate: ["", Validators.required],
+      image: ["", Validators.required],
+      favorite: [false]
+    });
   }
 }

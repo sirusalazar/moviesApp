@@ -9,21 +9,25 @@
         [movie]="movie"
         routerLink="movie/{{ movie.id }}"
         routerLinkActive="is-active"
+        (click)="sidenav.close()"
       ></mas-movie-item>
       <mat-list-item *ngIf="!movies.length" fxLayout="column" class="no-items">
-        <p>there are no movies to show :(</p>
-        <button routerLink="/new" mat-raised-button color="primary">
+        <p matLine>there are no movies to show :(</p>
+        <button matLine routerLink="/new" mat-raised-button color="primary">
           Add Movie
         </button>
       </mat-list-item>
     </mat-list>
   </mat-sidenav>
-  <button
-    mat-icon-button
-    *ngIf="!sidenav.opened"
-    (click)="open()"
-    class="btn-open"
-  >
-    <mat-icon>format_indent_increase</mat-icon>
-  </button>
+  <div *ngIf="!sidenav.opened">
+    <button
+      mat-icon-button
+      (click)="open()"
+      matTooltip="show movies list"
+      aria-label=""
+      class="btn-open"
+    >
+      <mat-icon>format_indent_increase</mat-icon>
+    </button>
+  </div>
 </div>
