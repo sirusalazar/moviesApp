@@ -1,5 +1,5 @@
 /* You can add global styles to this file, and also import other style files */
-
+@import "node_modules/angular2-toaster/src/toaster";
 html,
 body {
   height: 100%;
@@ -10,7 +10,8 @@ body {
 }
 
 .list-items .mat-drawer-inner-container {
-  height: 100%;
+  min-height: 100%;
+  height: auto;
   box-shadow: 0 2px 2px rgba(0, 0, 0, 0.24), 0 0 2px rgba(0, 0, 0, 0.12);
 }
 

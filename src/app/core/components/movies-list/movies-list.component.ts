@@ -12,6 +12,8 @@ export class MoviesListComponent implements OnInit {
 
   @Input() movies: Movie[];
 
+  filterParam = "";
+
   constructor() {}
 
   ngOnInit() {
@@ -23,5 +25,9 @@ export class MoviesListComponent implements OnInit {
   }
   open() {
     this.sidenav.open();
+  }
+
+  applyFilter(filterValue: string) {
+    this.filterParam = filterValue;
   }
 }

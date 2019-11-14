@@ -3,6 +3,7 @@ import { NgModule } from "@angular/core";
 import { CommonModule } from "@angular/common";
 import { ReactiveFormsModule } from "@angular/forms";
 import { HttpClientModule } from "@angular/common/http";
+import { ToasterModule, ToasterService } from "angular2-toaster";
 
 import { AppRoutingModule, routedComponents } from "./app-routing.module";
 import { AppComponent } from "./app.component";
@@ -20,9 +21,10 @@ import { CoreModule } from "@moviesApp-core/core.module";
     BrowserAnimationsModule,
     CoreModule,
     ReactiveFormsModule,
-    HttpClientModule
+    HttpClientModule,
+    ToasterModule
   ],
-  providers: [HttpClientModule],
+  providers: [HttpClientModule, ToasterService],
   bootstrap: [AppComponent]
 })
 export class AppModule {}

@@ -6,6 +6,8 @@ import { UUID } from "angular2-uuid";
 import { MovieService } from "@moviesApp-core/services/movie.service";
 import { Movie } from "@moviesApp-core/models/movie.model";
 import { CanComponentDeactive } from "@moviesApp-shared/services/canDeactiveGuard.service";
+import { Toast } from "angular2-toaster";
+import { NotificationService } from "@moviesApp-shared/services/notifications.service";
 
 @Component({
   selector: "mas-movie-form",
@@ -33,7 +35,8 @@ export class MovieFormComponent
   constructor(
     private movieService: MovieService,
     private _fb: FormBuilder,
-    private route: ActivatedRoute
+    private route: ActivatedRoute,
+    private notificationService: NotificationService
   ) {}
 
   ngOnInit() {
@@ -47,11 +50,14 @@ export class MovieFormComponent
   }
 
   onSubmit(evt) {
-    evt.preventDefault();
     this.movieService.saveMovie(this.getFormData());
     this.movieForm.reset();
     this.imageInput.clear();
     this.movieBase64Img = "";
+    this.notificationService.showSuccessMessage(
+      "Movie Saved",
+      "movie saved successfuly"
+    );
   }
 
   getFormData(): Movie {
@@ -86,7 +92,7 @@ export class MovieFormComponent
   }
 
   canDeactive() {
-    return this.movieForm.dirty
+    return this.movieForm.dirty && this.movieForm.touched
       ? confirm("you have pending changes, would you like to continue?")
       : true;
   }

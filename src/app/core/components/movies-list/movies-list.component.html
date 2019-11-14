@@ -1,8 +1,11 @@
 <div class="list-container">
   <mat-sidenav #sidenav disableClose class="list-items">
     <mat-list>
+      <mat-list-item>
+        <mas-filter (applyFilter)="applyFilter($event)"></mas-filter>
+      </mat-list-item>
       <mas-movie-item
-        *ngFor="let movie of movies"
+        *ngFor="let movie of movies | filter: filterParam:'title'"
         [movie]="movie"
         routerLink="movie/{{ movie.id }}"
       ></mas-movie-item>
