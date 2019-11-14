@@ -53,7 +53,7 @@ export class MovieFormComponent
     this.movieForm = this.generateForm();
     this.notificationService.showSuccessMessage(
       "Movie Saved",
-      "movie saved successfuly"
+      "movie saved successfully"
     );
   }
 
