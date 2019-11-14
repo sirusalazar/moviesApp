@@ -36,12 +36,6 @@ const routes: Routes = [
     canDeactivate: [CanDeactivateGuard]
   },
   {
-    path: "edit/:position",
-    component: MovieFormComponent,
-    data: { title: "Edit" },
-    canDeactivate: [CanDeactivateGuard]
-  },
-  {
     path: "top",
     component: TopMoviesComponent,
     data: { title: "Top 5" },

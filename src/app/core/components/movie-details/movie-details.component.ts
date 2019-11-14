@@ -1,5 +1,5 @@
 import { Component, OnInit, Input } from "@angular/core";
-import { ActivatedRoute } from "@angular/router";
+import { ActivatedRoute, Router } from "@angular/router";
 
 import { MovieService } from "@moviesApp-core/services/movie.service";
 import { Movie } from "@moviesApp-core/models/movie.model";
@@ -16,14 +16,18 @@ export class MovieDetailsComponent implements OnInit {
 
   constructor(
     private movieService: MovieService,
-    private route: ActivatedRoute
+    private route: ActivatedRoute,
+    private router: Router
   ) {}
 
   ngOnInit() {
     if (!this.inputedMovie) {
       this.route.paramMap.subscribe(params => {
-        const position = params.get("id");
-        this.movie = this.movieService.getMovie(position);
+        const id = params.get("id");
+        this.movie = this.movieService.getMovie(id);
+        if (!this.movie) {
+          this.router.navigate(["/home"]);
+        }
       });
     } else {
       this.movie = this.inputedMovie;

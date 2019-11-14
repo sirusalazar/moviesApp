@@ -3,17 +3,20 @@
     *ngIf="!movie.favorite"
     matTooltip="Mark as favorite"
     aria-label=""
-    (click)="toggleFavorite()"
+    (click)="toggleFavorite($event)"
     >favorite_border</mat-icon
   >
   <mat-icon
     *ngIf="movie.favorite"
     matTooltip="Unmark as favorite"
     aria-label=""
-    (click)="toggleFavorite()"
+    (click)="toggleFavorite($event)"
     >favorite</mat-icon
   >
-  <mat-icon (click)="delete()" matTooltip="Delete this movie" aria-label=""
+  <mat-icon
+    (click)="delete($event)"
+    matTooltip="Delete this movie"
+    aria-label=""
     >delete</mat-icon
   >
   <h3 mat-line>{{ movie.title }}</h3>

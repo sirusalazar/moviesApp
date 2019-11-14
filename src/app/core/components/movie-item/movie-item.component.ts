@@ -14,11 +14,13 @@ export class MovieItemComponent implements OnInit {
 
   ngOnInit() {}
 
-  delete() {
+  delete(evt) {
+    evt.preventDefault();
     this.movieService.deleteMovie(this.movie.id);
   }
 
-  toggleFavorite() {
+  toggleFavorite(evt) {
+    evt.preventDefault();
     this.movieService.toggleFavorite(this.movie.id);
   }
 }

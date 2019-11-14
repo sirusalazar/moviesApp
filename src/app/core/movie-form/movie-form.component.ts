@@ -15,8 +15,8 @@ import { CanComponentDeactive } from "@moviesApp-shared/services/canDeactiveGuar
 export class MovieFormComponent
   implements OnInit, OnDestroy, CanComponentDeactive {
   movieBase64Img = "";
-  @ViewChild("removableInput", { static: false })
-  private removableInput: any;
+  @ViewChild("imageInput", { static: false })
+  private imageInput: any;
 
   routeData: any;
 
@@ -46,8 +46,12 @@ export class MovieFormComponent
     this.routeData.unsubscribe();
   }
 
-  onSubmit() {
+  onSubmit(evt) {
+    evt.preventDefault();
     this.movieService.saveMovie(this.getFormData());
+    this.movieForm.reset();
+    this.imageInput.clear();
+    this.movieBase64Img = "";
   }
 
   getFormData(): Movie {
@@ -65,12 +69,9 @@ export class MovieFormComponent
   handleFileSelect(evt) {
     var files = evt.target.files;
     var file = files[0];
-
     if (files && file) {
       var reader = new FileReader();
-
       reader.onload = this._handleReaderLoaded.bind(this);
-
       reader.readAsDataURL(file);
     }
   }
@@ -80,7 +81,7 @@ export class MovieFormComponent
   }
 
   onClearImage(evt) {
-    this.removableInput.clear(evt);
+    this.imageInput.clear(evt);
     this.movieBase64Img = "";
   }
 

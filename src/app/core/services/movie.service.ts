@@ -30,7 +30,7 @@ export class MovieService {
       this.movies = [];
     }
     this.movies.push(movie);
-    this.webStorageService.store(AppConstants.localStoreKey, this.movies);
+    this.persistMovies();
   }
 
   getAllMovies(): Movie[] {
@@ -38,16 +38,18 @@ export class MovieService {
   }
 
   deleteMovie(id: string) {
-    const resultMovies = this.movies.filter(item => item.id !== id);
-    this.webStorageService.store(AppConstants.localStoreKey, resultMovies);
-    return resultMovies;
+    this.movies.splice(
+      this.movies.findIndex(item => item.id === id),
+      1
+    );
+    this.persistMovies();
   }
 
   toggleFavorite(id) {
     const index = this.movies.map(m => m.id).indexOf(id);
     if (index > -1) {
       this.movies[index].favorite = !this.movies[index].favorite;
-      this.webStorageService.store(AppConstants.localStoreKey, this.movies);
+      this.persistMovies();
     }
   }
 
@@ -57,5 +59,9 @@ export class MovieService {
 
   getFavorites() {
     return this.movies.filter(item => item.favorite);
+  }
+
+  private persistMovies() {
+    this.webStorageService.store(AppConstants.localStoreKey, this.movies);
   }
 }

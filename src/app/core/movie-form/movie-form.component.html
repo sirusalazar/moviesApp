@@ -1,7 +1,7 @@
 <form
   [formGroup]="movieForm"
   fxLayout="row"
-  (ngSubmit)="onSubmit()"
+  (ngSubmit)="onSubmit($event)"
   fxLayoutAlign="center center"
 >
   <mat-card fxFlex="1 1 50%" fxFlex.sm="1 1 75%" fxFlex.xs="1 1 100%">
@@ -41,7 +41,7 @@
 
       <mat-form-field>
         <ngx-mat-file-input
-          #removableInput
+          #imageInput
           formControlName="image"
           placeholder="Movie Image"
           valuePlaceholder="No file selected"
@@ -55,7 +55,7 @@
           matSuffix
           matTooltip="remove file"
           [matTooltipPosition]="above"
-          *ngIf="!removableInput.empty"
+          *ngIf="!imageInput.empty"
           (click)="onClearImage($event)"
         >
           <mat-icon>clear</mat-icon>
