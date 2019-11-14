@@ -11,6 +11,7 @@ import { AppSharedModule } from "@moviesApp-shared/app-shared.module";
 import { CoreModule } from "@moviesApp-core/core.module";
 
 import { LoaderInterceptorService } from "./interceptors/loader.interceptor";
+import { HttpErrorInterceptorService } from "./interceptors/error.interceptor";
 
 @NgModule({
   declarations: [AppComponent, routedComponents],
@@ -30,6 +31,11 @@ import { LoaderInterceptorService } from "./interceptors/loader.interceptor";
     {
       provide: HTTP_INTERCEPTORS,
       useClass: LoaderInterceptorService,
+      multi: true
+    },
+    {
+      provide: HTTP_INTERCEPTORS,
+      useClass: HttpErrorInterceptorService,
       multi: true
     }
   ],

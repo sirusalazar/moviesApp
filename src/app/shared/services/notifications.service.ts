@@ -11,8 +11,16 @@ export class NotificationService {
   };
 
   constructor(private toasterService: ToasterService) {}
+
   showSuccessMessage(title: string, message: string) {
     this.toast.type = "success";
+    this.toast.title = title;
+    this.toast.body = message;
+    this.toasterService.pop(this.toast);
+  }
+
+  showErrorMessage(title: string, message: string) {
+    this.toast.type = "error";
     this.toast.title = title;
     this.toast.body = message;
     this.toasterService.pop(this.toast);
