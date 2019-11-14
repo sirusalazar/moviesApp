@@ -7,41 +7,55 @@ import { Movie } from "@moviesApp-core/models/movie.model";
 
 @Injectable()
 export class MovieService {
-  private data: any = {};
+  private movies: Movie[];
 
   constructor(
     private httpClient: HttpClient,
     private webStorageService: WebStorageService
-  ) {}
+  ) {
+    this.movies =
+      this.webStorageService.retrieve(AppConstants.localStoreKey) || [];
+  }
 
   getMovie(movieId: string) {
-    return this.getAllMovies().filter(item => item.id === movieId)[0];
+    const filterdMovies = this.movies.filter(item => item.id === movieId);
+    if (filterdMovies.length) {
+      return filterdMovies[0];
+    }
+    return null;
   }
 
   saveMovie(movie: Movie) {
-    const moviesList =
-      this.webStorageService.retrieve(AppConstants.localStoreKey) || [];
-    moviesList.push(movie);
-    this.webStorageService.store(AppConstants.localStoreKey, moviesList);
+    if (!this.movies.length) {
+      this.movies = [];
+    }
+    this.movies.push(movie);
+    this.webStorageService.store(AppConstants.localStoreKey, this.movies);
   }
 
   getAllMovies(): Movie[] {
-    return this.webStorageService.retrieve(AppConstants.localStoreKey) || [];
+    return this.movies;
   }
 
   deleteMovie(id: string) {
-    const movies = this.getAllMovies();
-    const resultMovies = movies.filter(item => item.id !== id);
+    const resultMovies = this.movies.filter(item => item.id !== id);
     this.webStorageService.store(AppConstants.localStoreKey, resultMovies);
     return resultMovies;
   }
 
   toggleFavorite(id) {
-    const movies = this.getAllMovies();
-    const index = movies.map(m => m.id).indexOf(id);
+    const index = this.movies.map(m => m.id).indexOf(id);
     if (index > -1) {
-      movies[index].favorite = !movies[index].favorite;
-      this.webStorageService.store(AppConstants.localStoreKey, movies);
+      this.movies[index].favorite = !this.movies[index].favorite;
+      this.webStorageService.store(AppConstants.localStoreKey, this.movies);
     }
+  }
+
+  getTopMovies() {
+    return this.httpClient.get(AppConstants.top5Url);
+  }
+
+  getFavorites() {
+    return this.movies.filter(item => item.favorite);
   }
 }

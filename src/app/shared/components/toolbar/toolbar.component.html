@@ -1,3 +1,65 @@
 <mat-toolbar color="primary">
-  <a routerLink="/home">MoviesApp</a>
+  <div fxHide.gt-xs>
+    <button mat-icon-button>
+      <mat-icon>menu</mat-icon>
+    </button>
+  </div>
+  <a routerLink="/home" fxHide.xs>MoviesApp</a>
+  <div fxShow="true" fxLayoutAlign="end" fxLayout.xs="column">
+    <a routerLink="/home" mat-button>Home</a>
+
+    <a routerLink="/new" mat-button>New</a>
+
+    <a routerLink="/top" mat-button>Top 5</a>
+
+    <a routerLink="/favorites" mat-button>Favorites</a>
+  </div>
 </mat-toolbar>
+<!--<div>
+  <mat-toolbar color="primary">
+    <span>Responsive Navigation</span>
+
+    <span class="example-spacer"></span>
+
+    <div fxShow="true" fxHide.lt-md="true">
+
+      <a href="#" mat-button>Menu Item 1</a>
+
+      <a href="#" mat-button>Menu Item 2</a>
+
+      <a href="#" mat-button>Menu Item 3</a>
+
+      <a href="#" mat-button>Menu Item 4</a>
+
+      <a href="#" mat-button>Menu Item 5</a>
+
+      <a href="#" mat-button>Menu Item 6</a>
+    </div>
+
+    <div fxShow="true" fxHide.gt-sm="true">
+      <a (click)="sidenav.toggle()">Show Side Menu</a>
+    </div>
+  </mat-toolbar>
+
+  <mat-sidenav-container fxFlexFill class="example-container">
+    <mat-sidenav #sidenav fxLayout="column">
+      <div fxLayout="column">
+        <a (click)="sidenav.toggle()" href="#" mat-button>Close</a>
+
+        <a href="#" mat-button>Menu Item 1</a>
+
+        <a href="#" mat-button>Menu Item 2</a>
+
+        <a href="#" mat-button>Menu Item 3</a>
+
+        <a href="#" mat-button>Menu Item 4</a>
+
+        <a href="#" mat-button>Menu Item 5</a>
+
+        <a href="#" mat-button>Menu Item 6</a>
+      </div>
+    </mat-sidenav>
+
+    <mat-sidenav-content fxFlexFill>Main content</mat-sidenav-content>
+  </mat-sidenav-container>
+</div>-->

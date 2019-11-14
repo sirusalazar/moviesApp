@@ -8,8 +8,12 @@
       fxLayoutAlign="space-around"
       class="movie-content"
     >
-      <div fxFlex="1 1 50%" class="movie-image">
-        <img mat-card-image src="{{ movie.image }}" />
+      <div fxFlex="1 1 200px" class="movie-image">
+        <img
+          mat-card-image
+          src="{{ movie.image }}"
+          onerror="this.src='../../../../assets/dummy-image.jpg'"
+        />
       </div>
       <div class="movie-info">
         <p><strong>Description: </strong>{{ movie.description }}</p>

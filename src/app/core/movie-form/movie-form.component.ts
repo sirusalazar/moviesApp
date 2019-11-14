@@ -5,13 +5,15 @@ import { UUID } from "angular2-uuid";
 
 import { MovieService } from "@moviesApp-core/services/movie.service";
 import { Movie } from "@moviesApp-core/models/movie.model";
+import { CanComponentDeactive } from "@moviesApp-shared/services/canDeactiveGuard.service";
 
 @Component({
   selector: "mas-movie-form",
   templateUrl: "./movie-form.component.html",
   styleUrls: ["./movie-form.component.scss"]
 })
-export class MovieFormComponent implements OnInit, OnDestroy {
+export class MovieFormComponent
+  implements OnInit, OnDestroy, CanComponentDeactive {
   movieBase64Img = "";
   @ViewChild("removableInput", { static: false })
   private removableInput: any;
@@ -80,5 +82,11 @@ export class MovieFormComponent implements OnInit, OnDestroy {
   onClearImage(evt) {
     this.removableInput.clear(evt);
     this.movieBase64Img = "";
+  }
+
+  canDeactive() {
+    return this.movieForm.dirty
+      ? confirm("you have pending changes, would you like to continue?")
+      : true;
   }
 }

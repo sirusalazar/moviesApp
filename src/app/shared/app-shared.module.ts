@@ -1,20 +1,22 @@
 import { NgModule } from "@angular/core";
-import { AngularMaterialModule } from "./angular-material.module";
+import { AngularMaterialModule } from "@moviesApp-shared/angular-material.module";
 import { RouterModule } from "@angular/router";
+import { FlexLayoutModule } from "@angular/flex-layout";
 
-import { LeftNavigationComponent } from "./components/left-navigation/left-navigation.component";
-import { ToolbarComponent } from "./components/toolbar/toolbar.component";
+import { LeftNavigationComponent } from "@moviesApp-shared/components/left-navigation/left-navigation.component";
+import { ToolbarComponent } from "@moviesApp-shared/components/toolbar/toolbar.component";
 
-import { WebStorageService } from "./services/webStorage.service";
+import { WebStorageService } from "@moviesApp-shared/services/webStorage.service";
 
 @NgModule({
   declarations: [LeftNavigationComponent, ToolbarComponent],
-  imports: [AngularMaterialModule, RouterModule],
+  imports: [AngularMaterialModule, RouterModule, FlexLayoutModule],
   exports: [
     AngularMaterialModule,
     RouterModule,
     LeftNavigationComponent,
-    ToolbarComponent
+    ToolbarComponent,
+    FlexLayoutModule
   ],
   providers: [WebStorageService]
 })
