@@ -8,6 +8,7 @@
         *ngFor="let movie of movies | filter: filterParam:'title'"
         [movie]="movie"
         routerLink="movie/{{ movie.id }}"
+        routerLinkActive="is-active"
       ></mas-movie-item>
       <mat-list-item *ngIf="!movies.length" fxLayout="column" class="no-items">
         <p>there are no movies to show :(</p>

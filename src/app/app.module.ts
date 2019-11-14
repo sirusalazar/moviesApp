@@ -1,8 +1,7 @@
 import { BrowserModule } from "@angular/platform-browser";
 import { NgModule } from "@angular/core";
-import { CommonModule } from "@angular/common";
 import { ReactiveFormsModule } from "@angular/forms";
-import { HttpClientModule } from "@angular/common/http";
+import { HttpClientModule, HTTP_INTERCEPTORS } from "@angular/common/http";
 import { ToasterModule, ToasterService } from "angular2-toaster";
 
 import { AppRoutingModule, routedComponents } from "./app-routing.module";
@@ -11,11 +10,12 @@ import { BrowserAnimationsModule } from "@angular/platform-browser/animations";
 import { AppSharedModule } from "@moviesApp-shared/app-shared.module";
 import { CoreModule } from "@moviesApp-core/core.module";
 
+import { LoaderInterceptorService } from "./interceptors/loader.interceptor";
+
 @NgModule({
   declarations: [AppComponent, routedComponents],
   imports: [
     BrowserModule,
-    CommonModule,
     AppRoutingModule,
     AppSharedModule,
     BrowserAnimationsModule,
@@ -24,7 +24,15 @@ import { CoreModule } from "@moviesApp-core/core.module";
     HttpClientModule,
     ToasterModule
   ],
-  providers: [HttpClientModule, ToasterService],
+  providers: [
+    HttpClientModule,
+    ToasterService,
+    {
+      provide: HTTP_INTERCEPTORS,
+      useClass: LoaderInterceptorService,
+      multi: true
+    }
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule {}

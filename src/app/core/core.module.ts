@@ -7,7 +7,7 @@ import { MovieService } from "@moviesApp-core/services/movie.service";
 
 import { MovieItemComponent } from "@moviesApp-core/components/movie-item/movie-item.component";
 import { MoviesListComponent } from "@moviesApp-core/components/movies-list/movies-list.component";
-import { NotFoundComponent } from './not-found/not-found.component';
+import { NotFoundComponent } from "@moviesApp-core/not-found/not-found.component";
 
 @NgModule({
   declarations: [MoviesListComponent, MovieItemComponent, NotFoundComponent],
