@@ -24,12 +24,13 @@ export class MoviesListComponent implements OnInit, OnDestroy {
       this.activeMediaQuery = change
         ? `'${change.mqAlias}' = (${change.mediaQuery})`
         : "";
-      change.mqAlias === "xs" ? this.sidenav.close() : this.sidenav.open();
       this.currentMedia = change;
     });
   }
 
-  ngOnInit() {}
+  ngOnInit() {
+    this.sidenav.open();
+  }
 
   ngOnDestroy(): void {
     this.watcher.unsubscribe();
